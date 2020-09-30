@@ -1,5 +1,5 @@
 const express = require('express');
-const {getBlogs , getBlog, createBlog, updateBlog, deleteBlog,uploadPhotoBlog} = require('../controllers/Blog');
+const {getBlogs , getBlog, createBlog, updateBlog, deleteBlog,uploadPhotoBlog} = require('../controllers/blog');
 const Blog = require('../models/Blog');
 
 
