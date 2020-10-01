@@ -8,7 +8,7 @@ const path = require('path')
 
 exports.getBlogs = async (req, res, next) => {
     try{
-    res.status(200).json(res.advancedResults)
+    res.status(200).set({"Access-Control-Allow-Origin": "*"}).json(res.advancedResults)
     }catch(err){
         next(err)
     }
@@ -24,7 +24,7 @@ exports.getBlog = (req, res, next) => {
         if(!info){
             return next(new ErrorResponse(`Blog not found with id of ${req.params.id}`,404))
         }
-        res.status(200).json({success : true, message : info})}).catch(err => next(err))
+        res.status(200).set({"Access-Control-Allow-Origin": "*"}).json({success : true, message : info})}).catch(err => next(err))
 }
 
 //@desc Create new blog
@@ -45,7 +45,7 @@ exports.createBlog = async (req, res, next) => {
         return next(new ErrorResponse(`The User with id of ${req.user.id} has already published a blog`,404))
     }
 
-    Blog.create(req.body).then((info) => res.status(201).json({success : true, message : info})).catch(err => next(err))
+    Blog.create(req.body).then((info) => res.status(201).set({"Access-Control-Allow-Origin": "*"}).json({success : true, message : info})).catch(err => next(err))
     //res.status(200).json({success : true, message : info})
 }
 
@@ -64,7 +64,7 @@ exports.updateBlog = (req, res, next) => {
         Blog.findByIdAndUpdate(req.params.id,req.body,{
             new : true,
             runValidators : true
-        }).then(data => res.status(200).json({success : true, message : data})).catch(err => next(err))
+        }).then(data => res.status(200).set({"Access-Control-Allow-Origin": "*"}).json({success : true, message : data})).catch(err => next(err))
         }).catch(err => next(err))
 }
 
